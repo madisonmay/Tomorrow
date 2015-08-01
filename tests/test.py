@@ -43,17 +43,13 @@ def test_shared_executor():
 
     @threads(executor)
     def f(x):
-        print x 
         time.sleep(DELAY)
         return x
 
     @threads(executor)
     def g(x):
-        print x
         time.sleep(DELAY)
         return x
-
-    value = True
 
     start = time.time()
 
@@ -65,5 +61,4 @@ def test_shared_executor():
         print result
 
     end = time.time()
-
-    assert (2 * DELAY) < (end - start) < (4 * DELAY)
+    assert (N * DELAY) < (end - start) < (2 * N * DELAY)

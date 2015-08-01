@@ -1,25 +1,25 @@
 from functools import wraps
 
-import concurrent.futures
-from concurrent.futures import ThreadPoolExecutor, ProcessPoolExecutor
-from concurrent.futures import Future
+from concurrent.futures import ThreadPoolExecutor
 
 
 class Tomorrow():
     
-    def __init__(self, future):
+    def __init__(self, future, timeout):
         self._future = future
+        self._timeout = timeout
 
     def __getattr__(self, name):
-        return self._future.result().__getattribute__(name)
+        if name == '_wait':
+            return self._future.result
+        elif name == '_timeout':
+            return self._timeout
+        else:
+            result = self._future.result(self._timeout)
+            return result.__getattribute__(name)
 
 
-def async(n, base_type):
-    """
-    Base decorator factory that takes in either:
-       - ThreadPoolExecutor
-       - ProcessPoolExecutor
-    """
+def async(n, base_type, timeout=None):
     def decorator(f):
         if isinstance(n, int):
             pool = base_type(n)
@@ -32,10 +32,13 @@ def async(n, base_type):
             )
         @wraps(f)
         def wrapped(*args, **kwargs):
-            return Tomorrow(pool.submit(f, *args, **kwargs))
+            return Tomorrow(
+                pool.submit(f, *args, **kwargs),
+                timeout=timeout
+            )
         return wrapped
     return decorator
 
 
-def threads(n):
-    return async(n, ThreadPoolExecutor)
+def threads(n, timeout=None):
+    return async(n, ThreadPoolExecutor, timeout)
