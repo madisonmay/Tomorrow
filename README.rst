@@ -38,7 +38,7 @@ the task.
 For the following examples, we'll be using the top sites from the Alexa
 rankings.
 
-::
+.. code:: python
 
     urls = [
         'http://google.com',
@@ -50,7 +50,7 @@ rankings.
 
 Right then, let's get on to the code.
 
-::
+.. code:: python
 
     import time
     import requests
@@ -76,7 +76,8 @@ executes in multiple threads. Individual calls to ``download`` are
 non-blocking, but we can largely ignore this fact and write code
 identically to how we would in a synchronous paradigm.
 
-::
+
+.. code:: python
 
     import time
     import requests

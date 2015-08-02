@@ -32,7 +32,7 @@ You've collected a list of urls and are looking to download the HTML of the lot.
 
 For the following examples, we'll be using the top sites from the Alexa rankings.
 
-```
+```python
 urls = [
     'http://google.com',
     'http://facebook.com',
@@ -44,7 +44,7 @@ urls = [
 
 Right then, let's get on to the code.
 
-```
+```python
 import time
 import requests
 
@@ -65,7 +65,7 @@ More Efficient Web Scraper
 
 Using tomorrow's decorator syntax, we can define a function that executes in multiple threads.  Individual calls to `download` are non-blocking, but we can largely ignore this fact and write code identically to how we would in a synchronous paradigm. 
 
-``` 
+```python
 import time
 import requests
 
