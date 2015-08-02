@@ -8,15 +8,11 @@ class Tomorrow():
     def __init__(self, future, timeout):
         self._future = future
         self._timeout = timeout
+        self._wait = self._future.result
 
     def __getattr__(self, name):
-        if name == '_wait':
-            return self._future.result
-        elif name == '_timeout':
-            return self._timeout
-        else:
-            result = self._future.result(self._timeout)
-            return result.__getattribute__(name)
+        result = self._future.result(self._timeout)
+        return result.__getattribute__(name)
 
 
 def async(n, base_type, timeout=None):

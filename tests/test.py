@@ -1,64 +1,87 @@
 import time
+import unittest
 
-from concurrent.futures import ThreadPoolExecutor
+from concurrent.futures import ThreadPoolExecutor, TimeoutError
 
 from tomorrow import threads
 
 DELAY = 0.5
+TIMEOUT = 0.1
 N = 2
 
 
-def test_threads_decorator():
+class TomorrowTestCase(unittest.TestCase):
 
-    def slow_add(x, y):
-        time.sleep(DELAY)
-        return x + y
+    def test_threads_decorator(self):
 
-    @threads(N)
-    def async_add(x, y):
-        time.sleep(DELAY)
-        return x + y
+        def slow_add(x, y):
+            time.sleep(DELAY)
+            return x + y
 
-    x, y = 2, 2
+        @threads(N)
+        def async_add(x, y):
+            time.sleep(DELAY)
+            return x + y
 
-    start = time.time()
+        x, y = 2, 2
 
-    results = []
-    for i in range(N):
-        results.append(async_add(x, y))
+        start = time.time()
 
-    checkpoint = time.time()
+        results = []
+        for i in range(N):
+            results.append(async_add(x, y))
 
-    for result in results:
-        print result
+        checkpoint = time.time()
 
-    end = time.time()
-    assert (checkpoint - start) < DELAY
-    assert DELAY < (end - start) < (DELAY * N)
+        for result in results:
+            print result
+
+        end = time.time()
+        assert (checkpoint - start) < DELAY
+        assert DELAY < (end - start) < (DELAY * N)
 
 
-def test_shared_executor():
+    def test_shared_executor(self):
 
-    executor = ThreadPoolExecutor(N)
+        executor = ThreadPoolExecutor(N)
 
-    @threads(executor)
-    def f(x):
-        time.sleep(DELAY)
-        return x
+        @threads(executor)
+        def f(x):
+            time.sleep(DELAY)
+            return x
 
-    @threads(executor)
-    def g(x):
-        time.sleep(DELAY)
-        return x
+        @threads(executor)
+        def g(x):
+            time.sleep(DELAY)
+            return x
 
-    start = time.time()
+        start = time.time()
 
-    results = []
-    for i in range(N):
-        results.append(g(f(i)))
+        results = []
+        for i in range(N):
+            results.append(g(f(i)))
 
-    for result in results:
-        print result
+        for result in results:
+            print result
 
-    end = time.time()
-    assert (N * DELAY) < (end - start) < (2 * N * DELAY)
+        end = time.time()
+        assert (N * DELAY) < (end - start) < (2 * N * DELAY)
+
+
+    def test_timeout(self):
+
+        @threads(N, timeout=TIMEOUT)
+        def raises_timeout_error():
+            time.sleep(DELAY)
+
+        with self.assertRaises(TimeoutError):
+            print raises_timeout_error()
+
+        @threads(N, timeout=2*DELAY)
+        def no_timeout_error():
+            time.sleep(DELAY)
+
+        print no_timeout_error()
+
+if __name__ == "__main__":
+    unittest.main()
