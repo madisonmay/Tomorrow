@@ -46,8 +46,6 @@ Right then, let's get on to the code.
 import time
 import requests
 
-from tomorrow import threads
-
 def download(url):
     return requests.get(url)
 
@@ -68,6 +66,8 @@ Using tomorrow's decorator syntax, we can define a function that executes in mul
 ``` 
 import time
 import requests
+
+from tomorrow import threads
 
 @threads(5)
 def download(url):
