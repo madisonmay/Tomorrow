@@ -21,7 +21,9 @@ Usage
 -----
 The tomorrow library enables you to utilize the benefits of multi-threading with minimal concern about the implementation details.
 
-Let's take a look at how simple it is to speed up an inefficient chunk of blocking code with minimal effort.
+Behind the scenes, the library is a thin wrapper around the `Future` object in `concurrent.futures` that resolves the `Future` whenever you try to access any of its attributes.
+
+Enough of the implementation details, let's take a look at how simple it is to speed up an inefficient chunk of blocking code with minimal effort.
 
 
 Naive Web Scraper
