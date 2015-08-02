@@ -86,6 +86,20 @@ if __name__ == "__main__":
 
 Awesome!  With a single line of additional code (and no explicit threading logic) we can now download websites ~10x as efficiently.
 
+You can also optionally pass in a timeout argument, to prevent hanging on a task that is not guaranteed to return.
+
+```
+import time
+
+from tomorrow import threads
+
+@threads(1, timeout=0.1)
+def raises_timeout_error():
+    time.sleep(1)
+
+if __name__ == "__main__":
+    print raises_timeout_error()
+```
 
 How Does it Work?
 -----------------

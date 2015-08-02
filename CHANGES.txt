@@ -9,3 +9,8 @@
 0.2.1 
  - Package structure edits
  - Install instruction edits
+
+0.2.2
+ - Simplify Tomorrow.__init__
+ - Tests for timeout argument
+ - Documentation for timeout argument

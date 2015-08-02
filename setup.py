@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="tomorrow",
-    version="0.2.1",
+    version="0.2.2",
     author="Madison May",
     author_email="madison@indico.io",
     packages=find_packages(),
