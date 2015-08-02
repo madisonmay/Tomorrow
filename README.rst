@@ -1,3 +1,5 @@
+|Codeship Status for madisonmay/Tomorrow|
+
 Tomorrow
 ========
 
@@ -10,7 +12,7 @@ Tomorrow is conveniently available via pip:
 
 ::
 
-    sudo pip install tomorrow
+    pip install tomorrow
 
 or installable via ``git clone`` and ``setup.py``
 
@@ -102,3 +104,6 @@ How Does it Work?
 
 Feel free to read the source for a peek behind the scenes -- it's less
 that 50 lines of code.
+
+.. |Codeship Status for madisonmay/Tomorrow| image:: https://codeship.com/projects/9a3b4c60-1b5b-0133-5ec7-7e346f2e432c/status?branch=master
+   :target: https://codeship.com/projects/94472
