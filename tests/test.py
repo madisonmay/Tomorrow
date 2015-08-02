@@ -81,7 +81,7 @@ class TomorrowTestCase(unittest.TestCase):
         def no_timeout_error():
             time.sleep(DELAY)
 
-        print no_timeout_error()._wait(0.01)
+        print no_timeout_error()
 
 if __name__ == "__main__":
     unittest.main()
