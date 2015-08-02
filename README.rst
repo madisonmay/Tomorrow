@@ -1,3 +1,5 @@
+|Codeship Status for madisonmay/Tomorrow|
+
 Tomorrow
 ========
 
@@ -25,8 +27,13 @@ Usage
 The tomorrow library enables you to utilize the benefits of
 multi-threading with minimal concern about the implementation details.
 
-Let's take a look at how simple it is to speed up an inefficient chunk
-of blocking code with minimal effort.
+Behind the scenes, the library is a thin wrapper around the ``Future``
+object in ``concurrent.futures`` that resolves the ``Future`` whenever
+you try to access any of its attributes.
+
+Enough of the implementation details, let's take a look at how simple it
+is to speed up an inefficient chunk of blocking code with minimal
+effort.
 
 Naive Web Scraper
 -----------------
@@ -55,8 +62,6 @@ Right then, let's get on to the code.
     import time
     import requests
 
-    from tomorrow import threads
-
     def download(url):
         return requests.get(url)
 
@@ -76,11 +81,12 @@ executes in multiple threads. Individual calls to ``download`` are
 non-blocking, but we can largely ignore this fact and write code
 identically to how we would in a synchronous paradigm.
 
-
 .. code:: python
 
     import time
     import requests
+
+    from tomorrow import threads
 
     @threads(5)
     def download(url):
@@ -97,6 +103,22 @@ identically to how we would in a synchronous paradigm.
 
 Awesome! With a single line of additional code (and no explicit
 threading logic) we can now download websites ~10x as efficiently.
+
+You can also optionally pass in a timeout argument, to prevent hanging
+on a task that is not guaranteed to return.
+
+::
+
+    import time
+
+    from tomorrow import threads
+
+    @threads(1, timeout=0.1)
+    def raises_timeout_error():
+        time.sleep(1)
+
+    if __name__ == "__main__":
+        print raises_timeout_error()
 
 How Does it Work?
 -----------------
