@@ -8,7 +8,7 @@ Installation
 
 Tomorrow is conveniently available via pip:
 ```
-sudo pip install tomorrow
+pip install tomorrow
 ```
 
 or installable via `git clone` and `setup.py`

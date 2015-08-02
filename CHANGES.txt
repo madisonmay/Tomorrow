@@ -5,3 +5,7 @@
 0.2.0 
  - Documentation update
  - Code cleanliness
+
+0.2.1 
+ - Package structure edits
+ - Install instruction edits
