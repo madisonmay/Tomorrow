@@ -1,1 +1,1 @@
-from tomorrow import threads
+from .tomorrow import threads
