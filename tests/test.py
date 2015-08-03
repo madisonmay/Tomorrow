@@ -83,5 +83,16 @@ class TomorrowTestCase(unittest.TestCase):
 
         print no_timeout_error()
 
+    def test_future_function(self):
+
+        @threads(N)
+        def returns_function():
+            def f():
+                return True
+            return f
+
+        true = returns_function()
+        assert true()
+
 if __name__ == "__main__":
     unittest.main()
