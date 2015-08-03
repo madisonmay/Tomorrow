@@ -14,3 +14,8 @@
  - Simplify Tomorrow.__init__
  - Tests for timeout argument
  - Documentation for timeout argument
+
+0.2.3
+ - Sync README.rst with README.md
+ - Change to relative import
+ - Test to ensure functions are valid return types

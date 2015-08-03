@@ -1,5 +1,3 @@
-|Codeship Status for madisonmay/Tomorrow|
-
 Tomorrow
 ========
 
