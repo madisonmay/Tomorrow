@@ -105,7 +105,7 @@ threading logic) we can now download websites ~10x as efficiently.
 You can also optionally pass in a timeout argument, to prevent hanging
 on a task that is not guaranteed to return.
 
-::
+.. code:: python
 
     import time
 

@@ -90,7 +90,7 @@ Awesome!  With a single line of additional code (and no explicit threading logic
 
 You can also optionally pass in a timeout argument, to prevent hanging on a task that is not guaranteed to return.
 
-```
+```python
 import time
 
 from tomorrow import threads
