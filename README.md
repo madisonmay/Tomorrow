@@ -106,4 +106,4 @@ if __name__ == "__main__":
 How Does it Work?
 -----------------
 
-Feel free to read the source for a peek behind the scenes -- it's less that 50 lines of code.
+Feel free to read the source for a peek behind the scenes -- it's less than 50 lines of code.
