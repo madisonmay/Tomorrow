@@ -76,8 +76,6 @@ def download(url):
     return requests.get(url)
 
 if __name__ == "__main__":
-    import time
-
     start = time.time()
     responses = [download(url) for url in urls]
     html = [response.text for response in responses]
