@@ -4,16 +4,18 @@ from concurrent.futures import ThreadPoolExecutor
 
 
 class Tomorrow():
-    
+
     def __init__(self, future, timeout):
         self._future = future
         self._timeout = timeout
-        self._wait = self._future.result
 
     def __getattr__(self, name):
         result = self._future.result(self._timeout)
         return result.__getattribute__(name)
 
+    def _wait(self):
+        return self._future.result(self._timeout)
+        
 
 def async(n, base_type, timeout=None):
     def decorator(f):
