@@ -94,5 +94,26 @@ class TomorrowTestCase(unittest.TestCase):
         true = returns_function()
         assert true()
 
+    def test_wait(self):
+
+        mutable = []
+
+        @threads(N)
+        def side_effects():
+            mutable.append(True)
+
+        result = side_effects()
+        result._wait()
+        assert mutable[0]
+
+        @threads(N, timeout=0.1)
+        def side_effects_timeout():
+            time.sleep(1) 
+
+        result = side_effects_timeout()
+        with self.assertRaises(TimeoutError):
+            result._wait()
+
+
 if __name__ == "__main__":
     unittest.main()
