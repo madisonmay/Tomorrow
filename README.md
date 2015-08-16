@@ -17,6 +17,11 @@ git clone git@github.com:madisonmay/Tomorrow.git
 sudo python setup.py install
 ```
 
+To ensure Tomorrow is properly installed, you can run the unittest suite from the project root:
+```
+nosetests -v 
+```
+
 Usage
 -----
 The tomorrow library enables you to utilize the benefits of multi-threading with minimal concern about the implementation details.
