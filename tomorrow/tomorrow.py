@@ -10,7 +10,7 @@ class Tomorrow():
         self._timeout = timeout
 
     def __getattr__(self, name):
-        result = self._future.result(self._timeout)
+        result = self._wait()
         return result.__getattribute__(name)
 
     def _wait(self):
