@@ -2,10 +2,14 @@ from setuptools import setup, find_packages
 
 setup(
     name="tomorrow",
-    version="0.2.3",
+    version="0.2.4",
     author="Madison May",
     author_email="madison@indico.io",
-    packages=find_packages(),
+    packages=find_packages(
+        exclude=[
+            'tests'
+        ]
+    ),
     install_requires=[
         "futures >= 2.2.0"
     ],

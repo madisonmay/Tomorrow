@@ -19,3 +19,6 @@
  - Sync README.rst with README.md
  - Change to relative import
  - Test to ensure functions are valid return types
+
+0.2.4
+ - Remove `tests` folder from installed packages
