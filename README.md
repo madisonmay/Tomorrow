@@ -1,9 +1,10 @@
 [ ![Codeship Status for madisonmay/Tomorrow](https://codeship.com/projects/9a3b4c60-1b5b-0133-5ec7-7e346f2e432c/status?branch=master)](https://codeship.com/projects/94472)
 
 # Tomorrow
-Magic decorator syntax for asynchronous code in Python 2.7.
+**Magic decorator syntax for asynchronous code in Python 2.7.**
 
-Please don't actually use this in production.  It's more of a thought experiment than anything else, and relies heavily on behavior specific to Python's old style classes.  Pull requests, issues, comments and suggestions welcome.
+
+**Please don't actually use this in production.  It's more of a thought experiment than anything else, and relies heavily on behavior specific to Python's old style classes.  Pull requests, issues, comments and suggestions welcome.**
 
 Installation
 ------------
