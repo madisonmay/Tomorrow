@@ -13,6 +13,14 @@ class Tomorrow():
         result = self._wait()
         return result.__getattribute__(name)
 
+    @property
+    def res(self):
+        return self._wait()
+
+    def __iter__(self):
+        result = self._wait()
+        return result.__iter__()
+
     def _wait(self):
         return self._future.result(self._timeout)
 
