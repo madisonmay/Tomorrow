@@ -15,9 +15,8 @@ class Tomorrow():
 
     def _wait(self):
         return self._future.result(self._timeout)
-        
 
-def async(n, base_type, timeout=None):
+
 def async_(n, base_type, timeout=None):
     def decorator(f):
         if isinstance(n, int):
