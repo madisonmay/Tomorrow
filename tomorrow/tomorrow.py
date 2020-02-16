@@ -14,7 +14,7 @@ class Tomorrow():
         return result.__getattribute__(name)
 
     @property
-    def res(self):
+    def result(self):
         return self._wait()
 
     def __iter__(self):
